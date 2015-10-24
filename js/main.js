@@ -1,14 +1,26 @@
-var $submitButton = $('#submitButton');
+(function() {
+	loadOptions();
+	submitHandler();
+})();
 
-$submitButton.on('click', function() {
-	console.log('Submit');
+function submitHandler() {
+		var $submitButton = $('#submitButton');
+		$submitButton.on('click', function() {
+		console.log('Submit');
+		var return_to = getQueryParam('return_to', 'pebblejs://close#');
+		document.location = return_to + encodeURIComponent(JSON.stringify(getAndStoreConfigData()));
+	});
+}
+function loadOptions() {
+	var $backgroundColorPicker = $('#backgroundColourPicker');
 	
-	var return_to = getQueryParam('return_to', 'pebblejs://close#');
-	document.location = return_to + encodeURIComponent(JSON.stringify(getAndStoreConfigData()));
-});
+	if (localStorage.backgroundColor) {
+		$backgroundColorPicker[0].value = localStorage.backgroundColour;
+	}
+}
 
 function getAndStoreConfigData() {
-	var $backgroundColorPicker = $('#backgroundColorPicker');
+	var $backgroundColorPicker = $('#backgroundColourPicker');
 	
 	var options = {
 		backgroundColor: $backgroundColorPicker.val()	
