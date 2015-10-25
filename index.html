@@ -181,7 +181,7 @@
     leftColourPicker.value = localStorage['leftColor'];
     rightColourPicker.value = localStorage['rightColor'];
     bottomColourPicker.value = localStorage['bottomColor'];
-    disconnectCheckbox.checked = localStorage['disconnectAlert'];
+    disconnectCheckbox.checked = JSON.parse(localStorage['disconnectAlert']);
 	}
 })();
     </script>
